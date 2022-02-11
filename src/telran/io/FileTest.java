@@ -11,7 +11,7 @@ class FileTest {
 	File nodeFile = new File("file.txt");
 	File nodeDir = new File("dir1/dir2");
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUp() throws Exception { 
 		nodeFile.delete();
 		nodeDir.delete();
 	}
@@ -52,7 +52,31 @@ class FileTest {
 		is.close();
 		os.close();
 	}
-	
-	
+	@Test
+	void divisionByZeroTest()  {
+		System.out.println("\ndivisionByZeroTest begins...");
+		int ai=4, bi = 0;
+		try {
+			System.out.println("Integer OK  "+ai/bi);
+		} catch (ArithmeticException ex) {
+			System.out.println("Integer " + ex.toString());
+		}
+		double ad = 3.14, bd = 0.0;
+		System.out.println("Double OK  "+ad/bd);
+		float af = 3.14f, bf = 0.0f;
+		System.out.println("Float OK  "+ af/bf);
+		System.out.println("divisionByZeroTest ends\n");
+	}
+	@Test
+	void largeAllocation() { 
+		System.out.println("Ilya");
+		long len1 = Runtime.getRuntime().freeMemory();
+		long len2 = Runtime.getRuntime().freeMemory()*2;
+		System.out.println(len1+ "   " + len2);
+		byte[] buffer1 = new byte[(int)Runtime.getRuntime().freeMemory()]; 
+		byte[] buffer2 = new byte[(int)Runtime.getRuntime().freeMemory()*2];
+		System.out.println(buffer1.length + "  " + buffer2.length);
+		
+	}
 
 }
